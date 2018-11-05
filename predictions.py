@@ -55,7 +55,7 @@ def prediction(ngram, inputGram):
             p += log(ngram[1][ngram[0].index(gram)])
     return p
 
-languages = ["NL", "EN", "ES", "IT", "DE", "FR"]
+languages = ["NL", "EN", "SE", "IT", "DE", "FR"]
 biGrams = []
 triGrams = []
 for language in languages:
@@ -64,7 +64,7 @@ for language in languages:
 
 loop = True
 while loop:
-    inputText = input("input tekst: ") #"ik ben Xavier, ik ben moe"
+    inputText = input("input tekst: ")
     if inputText == "q" : loop = False
     else :
         inputBiGram = get_n_gram(inputText, 2)

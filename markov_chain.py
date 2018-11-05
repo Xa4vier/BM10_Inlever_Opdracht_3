@@ -55,13 +55,16 @@ def normalisation(dataset):
         temp.append(i / sum(dataset))
     return temp
 
-languages = ["NL", "EN", "SE", "IT", "DE", "FR"]
-triGrams = []
-biGrams = []
-for language in languages:
-    biGrams.append(calculate_all_n_gram(get_n_gram(open_text(f'{language}.txt'), 2)))
-    triGrams.append(calculate_all_n_gram(get_n_gram(open_text(f'{language}.txt'), 3)))
-    print(f"{language} done!")
-            
-save_all_chains(languages, 'biGram', biGrams)
-save_all_chains(languages, 'triGram', triGrams)
+# comment out als je gebruikt maakt van predictions.py 
+# un comment als je wilt trainen
+
+#languages = ["NL", "EN", "SE", "IT", "DE", "FR"]
+#triGrams = []
+#biGrams = []
+#for language in languages:
+#    biGrams.append(calculate_all_n_gram(get_n_gram(open_text(f'{language}.txt'), 2)))
+#    triGrams.append(calculate_all_n_gram(get_n_gram(open_text(f'{language}.txt'), 3)))
+#    print(f"{language} done!")
+#            
+#save_all_chains(languages, 'biGram', biGrams)
+#save_all_chains(languages, 'triGram', triGrams)
