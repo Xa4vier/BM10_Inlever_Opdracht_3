@@ -1,43 +1,33 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
-Created on Fri Nov  2 14:14:56 2018
+Created on Mon Nov  5 12:59:29 2018
 
 @author: xaviervanegdom
 """
-import csv
 
-def open_text(name):
-    with open(name, 'r', encoding = 'latin-1') as f:
-        return f.read()
+# makes a ngram model of a dataset
+def get_markov_model(name, n): 
+    word_data = open_text(name)
+    ngram = get_ngram(word_data, n)
+    return calculate_all_ngram(ngram)
 
-def save_all_chains(names, name, grams):
-        for i in range(len(grams)):
-            save_chain(f'grams/{names[i]}_{name}.csv', grams[i])
-
-# create excelsheet
-def save_chain(name, data):    
-    with open(name, 'w', newline='') as myfile:
-         wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
-         wr.writerow(data)
+# split all words in a list and delete all not alpha
+def get_ngram(word_data, n):
+        words = word_data.split()
+        words = [word for word in words if word.isalpha()]
+        return ngram(words, n)
  
 # make a list of n grams with a string of words
-def n_gram(words, n):
+def ngram(words, n):
     nGrams = []
     for i in range(len(words) - (n - 1)):
         temp = []
         for j in range(n):
             temp.append(words[i + j])
         nGrams.append(temp)
-    return nGrams        
+    return nGrams      
 
-# makes a ngram model of a dataset
-def get_n_gram(word_data, n):   
-    words = word_data.split()
-    words = [word for word in words if word.isalpha()]
-    return n_gram(words, n)
-    
-def calculate_all_n_gram(nGram):
+# calculate the probabilities of the ngrams in the dataset
+def calculate_all_ngram(nGram):
     temp = [] # how many times a ngram occurs 
     temp_words = [] # a list of all ngrams but now it will be a set 
     for gram in nGram:
@@ -55,16 +45,6 @@ def normalisation(dataset):
         temp.append(i / sum(dataset))
     return temp
 
-# comment out als je gebruikt maakt van predictions.py 
-# un comment als je wilt trainen
-
-#languages = ["NL", "EN", "SE", "IT", "DE", "FR"]
-#triGrams = []
-#biGrams = []
-#for language in languages:
-#    biGrams.append(calculate_all_n_gram(get_n_gram(open_text(f'{language}.txt'), 2)))
-#    triGrams.append(calculate_all_n_gram(get_n_gram(open_text(f'{language}.txt'), 3)))
-#    print(f"{language} done!")
-#            
-#save_all_chains(languages, 'biGram', biGrams)
-#save_all_chains(languages, 'triGram', triGrams)
+def open_text(name):
+    with open(name, 'r', encoding = 'latin-1') as f:
+        return f.read()
