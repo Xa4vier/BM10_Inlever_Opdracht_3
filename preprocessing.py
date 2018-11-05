@@ -7,7 +7,7 @@ from random import shuffle
 # make a nice list of the dataset
 def get_dataset_list(name):
     # load the datasets
-    with open(name, 'r', encoding = 'latin-1') as f:
+    with open(name, 'r') as f:
         dataset = f.read()
     
     tempset, temprow, temp = [], [], ''
@@ -83,8 +83,7 @@ def normalisation(dataset):
             j += 1
         
     return templist
-
-# dont call this one            
+            
 def normalisation_min_max(x, dataset):
     return (x - min(dataset)) / (max(dataset) - min(dataset))
 
