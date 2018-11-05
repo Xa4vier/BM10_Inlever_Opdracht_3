@@ -7,7 +7,7 @@ from random import shuffle
 # make a nice list of the dataset
 def get_dataset_list(name):
     # load the datasets
-    with open(name, 'r') as f:
+    with open(name, 'r', encoding = 'latin-1') as f:
         dataset = f.read()
     
     tempset, temprow, temp = [], [], ''
