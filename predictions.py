@@ -55,7 +55,7 @@ def prediction(ngram, inputGram):
             p += log(ngram[1][ngram[0].index(gram)])
     return p
 
-languages = ["NL", "EN"]
+languages = ["NL", "EN", "ES", "IT", "DE", "FR"]
 biGrams = []
 triGrams = []
 for language in languages:
